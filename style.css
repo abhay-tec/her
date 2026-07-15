@@ -278,7 +278,7 @@ body {
 }
 
 .photo-strip-img-1 {
-    object-position: center 42% !important; /* Centers Piya's face perfectly */
+    object-position: center 30% !important; /* Centers Piya's face in the new mirror selfie */
 }
 
 .photo-strip-img-2, .photo-strip-img-3 {
