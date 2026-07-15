@@ -217,8 +217,8 @@ body {
 .scrapbook-collage {
     position: relative;
     width: 100%;
-    height: 450px;
-    margin: 10px 0;
+    height: 400px;
+    margin: 5px 0;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -231,7 +231,7 @@ body {
     padding: 12px 10px 22px 10px;
     box-shadow: var(--shadow-medium);
     transform: rotate(-5deg);
-    width: 160px;
+    width: 135px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -264,7 +264,7 @@ body {
 
 .strip-photo {
     width: 100%;
-    height: 130px;
+    height: 115px;
     overflow: hidden;
     border: 2px solid #1a1a1a;
 }
@@ -275,6 +275,14 @@ body {
     object-fit: cover;
     filter: grayscale(100%) contrast(1.15);
     transition: filter 0.3s ease;
+}
+
+.photo-strip-img-1 {
+    object-position: center 15% !important; /* Centers Piya's face in the first photo strip slot */
+}
+
+.photo-strip-img-2, .photo-strip-img-3 {
+    object-position: center !important;
 }
 
 .photo-strip:hover img {
@@ -307,13 +315,13 @@ body {
     background: #fdfaf2;
     border: 1px solid #ebdcb9;
     box-shadow: var(--shadow-medium);
-    padding: 24px 15px 15px 15px;
-    width: 210px;
-    height: 250px;
-    transform: rotate(2deg) translateY(-10px);
+    padding: 15px;
+    width: 200px;
+    height: 200px;
+    transform: rotate(2deg);
     background-image: linear-gradient(#ebdcb9 1px, transparent 1px);
-    background-size: 100% 22px;
-    line-height: 22px;
+    background-size: 100% 20px;
+    line-height: 20px;
     position: relative;
     z-index: 5;
     border-radius: 4px;
@@ -337,10 +345,10 @@ body {
 
 .note-text {
     font-family: var(--font-handwritten);
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: #5c3a21;
-    line-height: 22px;
-    margin-top: 8px;
+    line-height: 20px;
+    margin-top: 5px;
 }
 
 /* 3. Calendar Card */
@@ -348,9 +356,10 @@ body {
     background: #fff;
     border: 1px solid rgba(0,0,0,0.05);
     box-shadow: var(--shadow-medium);
-    padding: 12px;
-    width: 175px;
-    transform: rotate(5deg) translateY(10px);
+    padding: 10px;
+    width: 165px;
+    height: 180px;
+    transform: rotate(5deg);
     display: flex;
     flex-direction: column;
     align-items: center;
