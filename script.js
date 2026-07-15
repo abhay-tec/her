@@ -146,7 +146,7 @@ const NOTES = {
 const TRACK_MELODIES = [
     // Track 1: Lofi Star (Warm slow chords & bells)
     {
-        name: "You're the star I look for every night",
+        name: "Jab Tak",
         chords: [['C4', 'E4', 'G4', 'C5'], ['A4', 'C5', 'E5'], ['F4', 'A4', 'C5'], ['G4', 'B5', 'D5']],
         melody: ['C5', 'E5', 'G5', 'A5', 'G5', 'E5', 'D5', 'C5'],
         tempo: 600 // ms per beat
