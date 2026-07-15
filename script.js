@@ -235,6 +235,15 @@ function startSynthLoop(trackIndex) {
         }
         return;
     }
+
+    if (trackIndex === 2) {
+        const bgAudio = document.getElementById('bg-audio');
+        if (bgAudio) {
+            bgAudio.src = 'assets/song3.mp3';
+            bgAudio.play().catch(e => console.log("Audio play blocked/failed: ", e));
+        }
+        return;
+    }
     
     let step = 0;
     function playStep() {
