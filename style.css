@@ -217,8 +217,8 @@ body {
 .scrapbook-collage {
     position: relative;
     width: 100%;
-    height: 380px;
-    margin: 20px 0;
+    height: 450px;
+    margin: 10px 0;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -264,7 +264,7 @@ body {
 
 .strip-photo {
     width: 100%;
-    height: 90px;
+    height: 130px;
     overflow: hidden;
     border: 2px solid #1a1a1a;
 }
@@ -422,6 +422,14 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     font-weight: bold;
+}
+
+.calendar-grid-days .today-day {
+    border: 1.5px dashed var(--scrapbook-red);
+    border-radius: 50%;
+    font-weight: bold;
+    color: var(--scrapbook-red);
+    background-color: rgba(139, 28, 28, 0.05);
 }
 
 .calendar-caption {
@@ -1000,7 +1008,7 @@ body {
     }
 
     .strip-photo {
-        height: 110px;
+        height: 150px;
     }
 
     .scrapbook-note {
