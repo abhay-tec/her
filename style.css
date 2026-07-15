@@ -1,0 +1,1033 @@
+/* ==========================================================================
+   Design System & Root Variables
+   ========================================================================== */
+:root {
+    --bg-cream: #faf7f2;
+    --paper-color: #f7f4ec;
+    --scrapbook-red: #8b1c1c;
+    --scrapbook-red-light: #b33939;
+    --text-dark: #2c2724;
+    --text-muted: #706761;
+    --border-color: #d1c7bd;
+    --font-serif: 'Playfair Display', Georgia, serif;
+    --font-display: 'Cinzel', serif;
+    --font-script: 'Great Vibes', cursive;
+    --font-handwritten: 'Architects Daughter', cursive;
+    --font-sans: 'Montserrat', sans-serif;
+    --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.05);
+    --shadow-medium: 0 15px 35px rgba(50, 45, 40, 0.12);
+    --shadow-hard: 0 20px 40px rgba(0, 0, 0, 0.18);
+}
+
+/* ==========================================================================
+   Reset & Base Styles
+   ========================================================================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #5c0f0f; /* Deep vintage burgundy exterior background */
+    background-image: radial-gradient(circle, #741616 0%, #3d0a0a 100%);
+    font-family: var(--font-sans);
+    color: var(--text-dark);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    position: relative;
+    padding: 20px;
+}
+
+/* Scrapbook grid/paper texture overlays */
+.stars-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background-image: 
+        radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
+        radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
+        radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px);
+    background-size: 550px 550px, 350px 350px, 250px 250px;
+    background-position: 0 0, 40px 60px, 130px 270px;
+    opacity: 0.15;
+    z-index: 1;
+}
+
+.dust-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.04;
+    z-index: 2;
+}
+
+/* ==========================================================================
+   Scrapbook Container
+   ========================================================================== */
+.scrapbook-container {
+    width: 100%;
+    max-width: 950px;
+    height: 650px;
+    background-color: var(--paper-color);
+    border-radius: 12px;
+    box-shadow: var(--shadow-hard);
+    position: relative;
+    overflow: hidden;
+    z-index: 3;
+    border: 12px solid #fff; /* White scrapbook border */
+    outline: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Book page structure */
+.book {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+/* Individual Pages */
+.page {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0.98) translateY(10px);
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
+                transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
+                visibility 0.8s;
+    background-color: var(--paper-color);
+    background-image: 
+        radial-gradient(var(--border-color) 0.5px, transparent 0.5px), 
+        radial-gradient(var(--border-color) 0.5px, var(--paper-color) 0.5px);
+    background-size: 20px 20px;
+    background-position: 0 0, 10px 10px;
+}
+
+.page.active {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1) translateY(0);
+    z-index: 5;
+}
+
+.page-content {
+    width: 100%;
+    height: 100%;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+}
+
+.center-content {
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* ==========================================================================
+   Header Elements (Scrapbook Page 1 & 2)
+   ========================================================================== */
+.scrapbook-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.page-num {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    opacity: 0.7;
+    margin-top: 10px;
+}
+
+.main-title {
+    font-family: var(--font-serif);
+    font-size: 2.2rem;
+    text-align: center;
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: 1px;
+    color: var(--text-dark);
+}
+
+.main-title span {
+    font-family: var(--font-script);
+    color: var(--scrapbook-red);
+    font-size: 3.5rem;
+    font-weight: normal;
+    display: inline-block;
+    margin: 0 5px;
+    transform: translateY(10px);
+}
+
+.main-title span:last-of-type {
+    font-family: var(--font-serif);
+    font-weight: bold;
+    color: var(--scrapbook-red);
+    font-size: 2.2rem;
+    letter-spacing: 2px;
+}
+
+/* Small headers for page 2 */
+.scrapbook-header-small {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    border-bottom: 1px dashed var(--border-color);
+    padding-bottom: 15px;
+}
+
+.sub-header-text {
+    font-family: var(--font-handwritten);
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    text-transform: lowercase;
+}
+
+.sub-header-title {
+    font-family: var(--font-serif);
+    font-size: 1.3rem;
+    color: var(--scrapbook-red);
+    font-weight: 600;
+}
+
+/* ==========================================================================
+   Photo Grid & Collage (Page 1)
+   ========================================================================== */
+.collage-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr 1fr;
+    gap: 30px;
+    align-items: center;
+    justify-content: center;
+    margin: 30px 0;
+    width: 100%;
+    height: 380px;
+}
+
+/* Photo Polaroid Frame */
+.photo-frame {
+    background: #fff;
+    padding: 12px 12px 35px 12px;
+    box-shadow: var(--shadow-medium);
+    position: relative;
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                box-shadow 0.5s ease,
+                z-index 0.5s;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.photo-frame:hover {
+    transform: scale(1.08) rotate(0deg) translateY(-10px) !important;
+    box-shadow: var(--shadow-hard);
+    z-index: 20;
+}
+
+.img-wrapper {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    border: 3px solid var(--scrapbook-red);
+    position: relative;
+    background-color: #eee;
+    transition: filter 0.5s ease;
+}
+
+.photo-frame:hover .img-wrapper {
+    filter: none;
+}
+
+.img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.photo-frame:hover img {
+    transform: scale(1.05);
+}
+
+.grayscale {
+    filter: grayscale(100%) contrast(1.1);
+}
+
+.polaroid-caption {
+    font-family: var(--font-handwritten);
+    font-size: 1rem;
+    color: var(--text-muted);
+    text-align: center;
+    margin-top: 12px;
+    transform: rotate(-1deg);
+}
+
+/* Tilted angles for casual scrapbook style */
+.angle-left {
+    transform: rotate(-4deg);
+}
+
+.angle-right {
+    transform: rotate(5deg);
+}
+
+.angle-none {
+    transform: rotate(0deg) scale(1.02);
+}
+
+/* Center Highlight Photo */
+.border-highlight {
+    border: 1px solid rgba(0,0,0,0.05);
+    box-shadow: 0 15px 40px rgba(139, 28, 28, 0.15);
+}
+
+.center-photo {
+    transform: translateY(-10px);
+}
+
+.center-photo .img-wrapper {
+    border: 4px solid var(--scrapbook-red);
+}
+
+/* Scrapbook tape & decorations */
+.tape {
+    position: absolute;
+    width: 100px;
+    height: 30px;
+    background-color: rgba(217, 203, 179, 0.4);
+    backdrop-filter: blur(1px);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    z-index: 15;
+    transform: rotate(-15deg);
+}
+
+.tape.top-left {
+    top: -15px;
+    left: -25px;
+    transform: rotate(-35deg);
+    border-left: 2px dashed rgba(0,0,0,0.1);
+    border-right: 2px dashed rgba(0,0,0,0.1);
+}
+
+.tape.top-right {
+    top: -15px;
+    right: -25px;
+    transform: rotate(35deg);
+    border-left: 2px dashed rgba(0,0,0,0.1);
+    border-right: 2px dashed rgba(0,0,0,0.1);
+}
+
+/* Floating pin icon */
+.pin {
+    width: 14px;
+    height: 14px;
+    background: radial-gradient(circle, #e74c3c 0%, #c0392b 100%);
+    border-radius: 50%;
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    z-index: 15;
+}
+.pin::after {
+    content: '';
+    width: 4px;
+    height: 4px;
+    background: rgba(255,255,255,0.6);
+    border-radius: 50%;
+    position: absolute;
+    top: 2px;
+    left: 3px;
+}
+
+/* Custom Red Labels on Photo */
+.note-label {
+    position: absolute;
+    background-color: var(--scrapbook-red);
+    color: #fff;
+    font-family: var(--font-handwritten);
+    font-size: 0.85rem;
+    padding: 4px 10px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+    z-index: 25;
+}
+
+.label-left {
+    top: 60px;
+    left: -20px;
+    transform: rotate(-8deg);
+}
+
+.label-right {
+    bottom: 80px;
+    right: -20px;
+    transform: rotate(10deg);
+}
+
+
+/* ==========================================================================
+   Calligraphy Section (Page 2)
+   ========================================================================== */
+.calligraphy-section {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.calligraphy-text-container {
+    position: relative;
+    text-align: center;
+    width: 100%;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Calligraphy Typography */
+.glow-text-cursive {
+    position: absolute;
+    font-family: var(--font-script);
+    font-size: 5rem;
+    color: rgba(139, 28, 28, 0.08);
+    transform: scale(1.05) rotate(-2deg);
+    pointer-events: none;
+    user-select: none;
+    white-space: nowrap;
+}
+
+.elegant-script-cursive {
+    font-family: var(--font-script);
+    font-size: 4.8rem;
+    color: var(--scrapbook-red);
+    position: relative;
+    animation: floatingText 4s ease-in-out infinite;
+    text-shadow: 1px 1px 0px rgba(255,255,255,0.8), 2px 2px 5px rgba(0,0,0,0.05);
+    white-space: nowrap;
+    transform: rotate(-2deg);
+}
+
+@keyframes floatingText {
+    0%, 100% {
+        transform: translateY(0) rotate(-2deg);
+    }
+    50% {
+        transform: translateY(-8px) rotate(-1deg);
+    }
+}
+
+
+/* ==========================================================================
+   Music Section & Vinyl Record (Page 3)
+   ========================================================================== */
+.scrapbook-header-music {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+}
+
+.star-decor {
+    font-size: 1.5rem;
+    color: #eed6b3;
+    animation: pulseStar 2s infinite alternate;
+}
+
+@keyframes pulseStar {
+    0% { transform: scale(0.8); opacity: 0.5; }
+    100% { transform: scale(1.2); opacity: 1; }
+}
+
+.music-page-title {
+    font-family: var(--font-serif);
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: var(--text-dark);
+}
+
+.music-page-title span {
+    font-family: var(--font-script);
+    color: var(--scrapbook-red);
+    font-size: 3.2rem;
+    vertical-align: middle;
+    display: inline-block;
+    transform: translateY(3px) rotate(-4deg);
+}
+
+.music-section {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr 1fr;
+    gap: 20px;
+    align-items: flex-start;
+    margin: 25px 0 10px 0;
+    width: 100%;
+    flex-grow: 1;
+}
+
+/* Music Card Layout */
+.music-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+}
+
+/* Vinyl Container */
+.vinyl-container {
+    width: 160px;
+    height: 160px;
+    position: relative;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+/* Vinyl Record Sleeve */
+.vinyl-sleeve {
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    border: 1px solid rgba(0,0,0,0.1);
+    box-shadow: var(--shadow-medium);
+    overflow: hidden;
+    position: relative;
+    z-index: 12;
+    transition: transform 0.3s ease;
+}
+
+.vinyl-sleeve img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.sleeve-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(139, 28, 28, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 13;
+}
+
+.vinyl-container:hover .sleeve-overlay {
+    opacity: 1;
+}
+
+.play-icon {
+    font-size: 2.2rem;
+    color: #fff;
+    transform: scale(0.8);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.vinyl-container:hover .play-icon {
+    transform: scale(1.1);
+}
+
+/* Vinyl Record (Spins and slides out) */
+.vinyl-record {
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle, #333 30%, #0d0d0d 60%, #222 70%, #000 100%);
+    border-radius: 50%;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    z-index: 10;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    transform: translateX(0);
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    pointer-events: none;
+}
+
+.vinyl-record::after {
+    /* Vinyl grooves */
+    content: "";
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    width: 90%;
+    height: 90%;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.05);
+    pointer-events: none;
+}
+
+/* Inner Vinyl Label */
+.vinyl-label {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-size: cover;
+    background-position: center;
+    border: 2px solid #000;
+}
+
+.vinyl-center {
+    width: 12px;
+    height: 12px;
+    background-color: var(--paper-color);
+    border: 1.5px solid #000;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 11;
+}
+
+/* Active playing state */
+.music-card.playing .vinyl-record {
+    transform: translateX(65px);
+    animation: spinRecord 4s linear infinite;
+    animation-delay: 0.6s;
+}
+
+.music-card.playing .sleeve-overlay {
+    opacity: 1;
+    background: rgba(0,0,0,0.15);
+}
+
+.music-card.playing .play-icon {
+    content: "\f04c"; /* Pause icon */
+}
+
+@keyframes spinRecord {
+    from { transform: translateX(65px) rotate(0deg); }
+    to { transform: translateX(65px) rotate(360deg); }
+}
+
+/* Lyrics below record */
+.lyrics-box {
+    margin-top: 15px;
+    font-family: var(--font-serif);
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: var(--text-muted);
+    opacity: 0.6;
+    transition: opacity 0.3s ease, color 0.3s ease;
+    padding: 0 10px;
+    position: relative;
+    max-width: 250px;
+}
+
+.lyrics-box.active {
+    opacity: 1;
+    color: var(--text-dark);
+}
+
+.lyrics-box.active p {
+    font-weight: 500;
+}
+
+/* Quote styles for the lyrics */
+.quote-mark {
+    color: var(--scrapbook-red);
+    font-size: 1.5rem;
+    font-family: Georgia, serif;
+    line-height: 0.1;
+    display: inline-block;
+    height: 10px;
+}
+
+.text-right {
+    text-align: right;
+    width: 100%;
+}
+
+
+/* ==========================================================================
+   Music Controller Bar (Page 3 Bottom)
+   ========================================================================== */
+.player-bar {
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 8px;
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: var(--shadow-soft);
+    margin-top: auto;
+}
+
+.now-playing {
+    display: flex;
+    flex-direction: column;
+    min-width: 150px;
+}
+
+.track-title {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.track-artist {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.audio-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.control-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    transition: color 0.2s, transform 0.2s;
+}
+
+.control-btn:hover {
+    color: var(--scrapbook-red);
+    transform: scale(1.1);
+}
+
+.play-pause-btn {
+    width: 36px;
+    height: 36px;
+    background-color: var(--scrapbook-red);
+    border-radius: 50%;
+    color: #fff !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.play-pause-btn:hover {
+    background-color: var(--scrapbook-red-light);
+    transform: scale(1.08);
+}
+
+/* Sound Wave Visualizer */
+.visualizer-container {
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    height: 30px;
+    width: 80px;
+}
+
+.bar {
+    width: 4px;
+    height: 3px;
+    background-color: var(--scrapbook-red);
+    border-radius: 2px;
+    transition: height 0.1s ease;
+}
+
+/* Wave dancing animation */
+.playing-wave .bar {
+    animation: dance 1s ease-in-out infinite alternate;
+}
+
+.playing-wave .bar:nth-child(1) { animation-delay: 0.1s; }
+.playing-wave .bar:nth-child(2) { animation-delay: 0.4s; }
+.playing-wave .bar:nth-child(3) { animation-delay: 0.2s; }
+.playing-wave .bar:nth-child(4) { animation-delay: 0.6s; }
+.playing-wave .bar:nth-child(5) { animation-delay: 0.3s; }
+.playing-wave .bar:nth-child(6) { animation-delay: 0.5s; }
+.playing-wave .bar:nth-child(7) { animation-delay: 0.1s; }
+.playing-wave .bar:nth-child(8) { animation-delay: 0.4s; }
+
+@keyframes dance {
+    0% { height: 4px; }
+    100% { height: 28px; }
+}
+
+
+/* ==========================================================================
+   Navigation & Footer (All Pages)
+   ========================================================================== */
+.scrapbook-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    border-top: 1px dashed var(--border-color);
+    padding-top: 15px;
+    margin-top: 15px;
+}
+
+.author-signature {
+    font-family: var(--font-handwritten);
+    font-size: 0.95rem;
+    color: var(--text-muted);
+}
+
+.page-counter {
+    font-family: var(--font-serif);
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.nav-btn {
+    background: none;
+    border: none;
+    font-family: var(--font-handwritten);
+    font-size: 1.1rem;
+    color: var(--scrapbook-red);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: transform 0.2s, color 0.2s;
+    padding: 5px 10px;
+}
+
+.nav-btn:hover {
+    color: var(--scrapbook-red-light);
+    transform: translateX(4px);
+}
+
+.prev-btn:hover {
+    transform: translateX(-4px);
+}
+
+.nav-placeholder {
+    width: 80px; /* Offset space for symmetry */
+}
+
+
+/* ==========================================================================
+   Particles / Heart Spawners
+   ========================================================================== */
+#particle-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 100;
+}
+
+.heart-particle {
+    position: absolute;
+    color: var(--scrapbook-red);
+    font-size: 1.2rem;
+    pointer-events: none;
+    animation: floatHeart 1.5s ease-out forwards;
+    opacity: 0.8;
+}
+
+@keyframes floatHeart {
+    0% {
+        transform: translateY(0) scale(1) rotate(0deg);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(-80px) scale(0.6) rotate(45deg);
+        opacity: 0;
+    }
+}
+
+
+/* ==========================================================================
+   Responsive & Adaptive Media Queries
+   ========================================================================== */
+@media (max-width: 900px) {
+    body {
+        padding: 10px;
+    }
+
+    .scrapbook-container {
+        height: auto;
+        min-height: auto;
+        border: 6px solid #fff;
+        border-radius: 8px;
+        margin: 10px auto;
+    }
+
+    .book {
+        height: auto;
+    }
+
+    .page.active {
+        position: relative;
+        height: auto;
+    }
+
+    .page-content {
+        height: auto;
+        padding: 24px 16px;
+    }
+
+    .collage-grid {
+        grid-template-columns: 1fr;
+        height: auto;
+        gap: 30px;
+        margin: 20px 0;
+        padding: 0 15px; /* Spacing to prevent labels from sticking out */
+    }
+
+    .center-photo {
+        transform: none;
+    }
+
+    .angle-left {
+        transform: rotate(-2deg);
+    }
+
+    .angle-right {
+        transform: rotate(2deg);
+    }
+
+    .photo-frame:hover {
+        transform: scale(1.03) rotate(0deg) translateY(-5px) !important;
+    }
+
+    /* Page 2 Calligraphy Section */
+    .calligraphy-text-container {
+        height: auto;
+        min-height: 150px;
+        padding: 20px 0;
+    }
+
+    .glow-text-cursive {
+        font-size: 2.3rem;
+        white-space: normal;
+        word-wrap: break-word;
+        line-height: 1.3;
+    }
+
+    .elegant-script-cursive {
+        font-size: 2.2rem;
+        white-space: normal;
+        word-wrap: break-word;
+        line-height: 1.3;
+    }
+
+    /* Page 3 Music Section */
+    .music-section {
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 15px;
+        padding: 15px 10px;
+        margin: 15px 0;
+        width: 100%;
+        scrollbar-width: none; /* Hide scrollbar for Firefox */
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .music-section::-webkit-scrollbar {
+        display: none; /* Hide scrollbar for Chrome/Safari */
+    }
+
+    .music-card {
+        flex: 0 0 250px;
+        scroll-snap-align: center;
+        margin: 0 auto;
+    }
+
+    .music-card.playing .vinyl-record {
+        transform: translateX(45px);
+        animation: spinRecordMobile 4s linear infinite;
+    }
+    
+    @keyframes spinRecordMobile {
+        from { transform: translateX(45px) rotate(0deg); }
+        to { transform: translateX(45px) rotate(360deg); }
+    }
+
+    /* Compact Player Bar */
+    .player-bar {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px 12px;
+        gap: 8px;
+        width: 100%;
+        margin-top: 15px;
+    }
+
+    .now-playing {
+        min-width: unset;
+        flex-grow: 1;
+        max-width: 110px;
+    }
+
+    .track-title {
+        font-size: 0.75rem;
+    }
+
+    .track-artist {
+        font-size: 0.65rem;
+    }
+
+    .audio-controls {
+        gap: 8px;
+    }
+
+    .control-btn {
+        font-size: 0.95rem;
+    }
+
+    .play-pause-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 0.85rem;
+    }
+
+    .visualizer-container {
+        width: 45px;
+        gap: 2px;
+        height: 20px;
+    }
+
+    .visualizer-container .bar {
+        width: 3px;
+    }
+
+    .visualizer-container .bar:nth-child(n+5) {
+        display: none; /* Hide visualizer bars 5 to 8 to save horizontal space */
+    }
+}

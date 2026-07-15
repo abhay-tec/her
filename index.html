@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You Too Devious To Just Be Mine | Happy Birthday Piya</title>
+    <meta name="description" content="A special birthday scrapbook website created with love.">
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Cinzel:wght@400;600;700&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Background sparkles / overlay -->
+    <div class="stars-overlay"></div>
+    <div class="dust-overlay"></div>
+
+    <!-- Main Container representing a Scrapbook -->
+    <div class="scrapbook-container">
+        <!-- Floating hearts/stars container -->
+        <div id="particle-container"></div>
+        
+        <div class="book">
+            <!-- PAGE 1: The Collage Cover -->
+            <div class="page active" id="page-1">
+                <div class="page-content">
+                    <div class="scrapbook-header">
+                        <span class="page-num">09</span>
+                        <div class="main-title">
+                            You too <span>devious</span><br>
+                            to just be [ <span>MINE</span> ]
+                        </div>
+                        <span class="page-num">02</span>
+                    </div>
+
+                    <!-- Photo grid / Collage -->
+                    <div class="collage-grid">
+                        <!-- Photo 1 -->
+                        <div class="photo-frame tape-top-left angle-left">
+                            <div class="tape top-left"></div>
+                            <div class="img-wrapper grayscale">
+                                <img src="assets/photo1.jpg" alt="Piya 1">
+                            </div>
+                            <div class="polaroid-caption">roof top vibes</div>
+                        </div>
+
+                        <!-- Photo 2 (Centerpiece with red notes) -->
+                        <div class="photo-frame border-highlight center-photo angle-none">
+                            <div class="pin"></div>
+                            <!-- Scrapbook labels/notes -->
+                            <div class="note-label label-left">my babyy</div>
+                            <div class="note-label label-right">my pretty girl</div>
+                            <div class="img-wrapper">
+                                <img src="assets/photo3.jpg" alt="Piya 2">
+                            </div>
+                            <div class="polaroid-caption">sunshine smile</div>
+                        </div>
+
+                        <!-- Photo 3 -->
+                        <div class="photo-frame tape-top-right angle-right">
+                            <div class="tape top-right"></div>
+                            <div class="img-wrapper grayscale">
+                                <img src="assets/photo2.jpg" alt="Piya 3">
+                            </div>
+                            <div class="polaroid-caption">devious mask</div>
+                        </div>
+                    </div>
+
+                    <div class="scrapbook-footer">
+                        <div class="author-signature">made with love by abhay</div>
+                        <button class="nav-btn next-btn" onclick="nextPage()">next <i class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAGE 2: Calligraphy Page -->
+            <div class="page" id="page-2">
+                <div class="page-content center-content">
+                    <div class="scrapbook-header-small">
+                        <span class="sub-header-text">true love</span>
+                        <span class="sub-header-title">songs that remind me of you</span>
+                        <span class="sub-header-text">other month</span>
+                    </div>
+
+                    <div class="calligraphy-section">
+                        <!-- Custom calligraphy typography -->
+                        <div class="calligraphy-text-container">
+                            <div class="glow-text-cursive">
+                                Girl, i'm so in love with you
+                            </div>
+                            <div class="elegant-script-cursive">
+                                Girl, i'm so in love with you
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="scrapbook-footer">
+                        <button class="nav-btn prev-btn" onclick="prevPage()"><i class="fa-solid fa-chevron-left"></i> back</button>
+                        <span class="page-counter">page 2 of 3</span>
+                        <button class="nav-btn next-btn" onclick="nextPage()">next <i class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAGE 3: Music Player ("You remind me of the color Blue") -->
+            <div class="page" id="page-3">
+                <div class="page-content">
+                    <div class="scrapbook-header-music">
+                        <div class="star-decor star-left">★</div>
+                        <div class="music-page-title">
+                            You remind me of the color <span>Blue</span>
+                        </div>
+                        <div class="star-decor star-right">★</div>
+                    </div>
+
+                    <!-- Vinyl Player Section -->
+                    <div class="music-section">
+                        <!-- Vinyl 1 -->
+                        <div class="music-card" id="card-1">
+                            <div class="vinyl-container">
+                                <!-- Record Sleeve / Jacket -->
+                                <div class="vinyl-sleeve" onclick="togglePlay(0)">
+                                    <img src="assets/photo1.jpg" alt="Sleeve Cover 1">
+                                    <div class="sleeve-overlay">
+                                        <i class="fa-solid fa-play play-icon"></i>
+                                    </div>
+                                </div>
+                                <!-- Vinyl Record -->
+                                <div class="vinyl-record" id="record-0">
+                                    <div class="vinyl-label" style="background-image: url('assets/photo1.jpg')"></div>
+                                    <div class="vinyl-center"></div>
+                                </div>
+                            </div>
+                            <div class="lyrics-box" id="lyrics-0">
+                                <p>"You're the star I look for every night...</p>
+                                <p>When it's dark, you'll stick right by my side..."</p>
+                            </div>
+                        </div>
+
+                        <!-- Vinyl 2 -->
+                        <div class="music-card active" id="card-2">
+                            <div class="vinyl-container">
+                                <div class="vinyl-sleeve" onclick="togglePlay(1)">
+                                    <img src="assets/photo4.jpg" alt="Sleeve Cover 2">
+                                    <div class="sleeve-overlay">
+                                        <i class="fa-solid fa-play play-icon"></i>
+                                    </div>
+                                </div>
+                                <div class="vinyl-record" id="record-1">
+                                    <div class="vinyl-label" style="background-image: url('assets/photo4.jpg')"></div>
+                                    <div class="vinyl-center"></div>
+                                </div>
+                            </div>
+                            <div class="lyrics-box active" id="lyrics-1">
+                                <p class="quote-mark">“</p>
+                                <p>The Sun don't shine when I'm alone</p>
+                                <p>I lose my mind and I lose control</p>
+                                <p>I see your eyes look through my soul</p>
+                                <p>Don't be surprised, this is all I know</p>
+                                <p class="quote-mark text-right">”</p>
+                            </div>
+                        </div>
+
+                        <!-- Vinyl 3 -->
+                        <div class="music-card" id="card-3">
+                            <div class="vinyl-container">
+                                <div class="vinyl-sleeve" onclick="togglePlay(2)">
+                                    <img src="assets/photo3.jpg" alt="Sleeve Cover 3">
+                                    <div class="sleeve-overlay">
+                                        <i class="fa-solid fa-play play-icon"></i>
+                                    </div>
+                                </div>
+                                <div class="vinyl-record" id="record-2">
+                                    <div class="vinyl-label" style="background-image: url('assets/photo3.jpg')"></div>
+                                    <div class="vinyl-center"></div>
+                                </div>
+                            </div>
+                            <div class="lyrics-box" id="lyrics-2">
+                                <p>"You really, really love me.</p>
+                                <p>You know me, and you love me.</p>
+                                <p>And it's the kind of love I've hoped I'd find."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Music controls & Visualizer -->
+                    <div class="player-bar">
+                        <div class="now-playing">
+                            <div class="track-info">
+                                <span class="track-title" id="current-track-title">Select a vinyl record to play</span>
+                                <span class="track-artist">Melody for Piya</span>
+                            </div>
+                        </div>
+                        <div class="audio-controls">
+                            <button class="control-btn" id="prev-track" onclick="prevTrack()"><i class="fa-solid fa-backward-step"></i></button>
+                            <button class="control-btn play-pause-btn" id="master-play" onclick="toggleMasterPlay()"><i class="fa-solid fa-play"></i></button>
+                            <button class="control-btn" id="next-track" onclick="nextTrack()"><i class="fa-solid fa-forward-step"></i></button>
+                        </div>
+                        <div class="visualizer-container">
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                        </div>
+                    </div>
+
+                    <div class="scrapbook-footer">
+                        <button class="nav-btn prev-btn" onclick="prevPage()"><i class="fa-solid fa-chevron-left"></i> back</button>
+                        <span class="page-counter">page 3 of 3</span>
+                        <div class="nav-placeholder"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Background music player -->
+    <audio id="bg-audio" loop></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
