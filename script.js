@@ -153,7 +153,7 @@ const TRACK_MELODIES = [
     },
     // Track 2: Sunshine Smile (Sweet cozy vibes)
     {
-        name: "The Sun don't shine when I'm alone",
+        name: "Kinna Sona",
         chords: [['E4', 'G4', 'B5'], ['A4', 'C5', 'E5'], ['D4', 'F4', 'A4'], ['G4', 'B5', 'D5']],
         melody: ['E5', 'G5', 'A5', 'C6', 'B5', 'A5', 'G5', 'E5'],
         tempo: 500
@@ -225,6 +225,15 @@ function startSynthLoop(trackIndex) {
             bgAudio.play().catch(e => console.log("Audio play blocked/failed: ", e));
         }
         return; // Skip synth synthesis for track 1
+    }
+
+    if (trackIndex === 1) {
+        const bgAudio = document.getElementById('bg-audio');
+        if (bgAudio) {
+            bgAudio.src = 'assets/song2.mp3';
+            bgAudio.play().catch(e => console.log("Audio play blocked/failed: ", e));
+        }
+        return;
     }
     
     let step = 0;
