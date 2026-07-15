@@ -44,6 +44,16 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
+const firstPhotoTrigger = document.querySelector('.photo-strip-img-1');
+if (firstPhotoTrigger) {
+    firstPhotoTrigger.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            togglePlay(0);
+        }
+    });
+}
+
 
 // ==========================================================================
 // Interactive Particles (Hearts & Sparkles)
@@ -201,13 +211,23 @@ function startSynthLoop(trackIndex) {
     stopSynthLoop();
     
     const track = TRACK_MELODIES[trackIndex];
-    let step = 0;
     
     // Update Master Play Bar
     document.getElementById('current-track-title').innerText = track.name;
     document.querySelector('.visualizer-container').classList.add('playing-wave');
     document.getElementById('master-play').innerHTML = '<i class="fa-solid fa-pause"></i>';
     
+    if (trackIndex === 0) {
+        // Play the downloaded YouTube Shorts audio file
+        const bgAudio = document.getElementById('bg-audio');
+        if (bgAudio) {
+            bgAudio.src = 'assets/song1.mp3';
+            bgAudio.play().catch(e => console.log("Audio play blocked/failed: ", e));
+        }
+        return; // Skip synth synthesis for track 1
+    }
+    
+    let step = 0;
     function playStep() {
         const time = audioCtx.currentTime;
         const chordIndex = Math.floor(step / 2) % track.chords.length;
@@ -238,6 +258,10 @@ function stopSynthLoop() {
     if (currentSynthInterval) {
         clearInterval(currentSynthInterval);
         currentSynthInterval = null;
+    }
+    const bgAudio = document.getElementById('bg-audio');
+    if (bgAudio) {
+        bgAudio.pause();
     }
     document.querySelector('.visualizer-container').classList.remove('playing-wave');
     document.getElementById('master-play').innerHTML = '<i class="fa-solid fa-play"></i>';
